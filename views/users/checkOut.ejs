@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from cartzilla.createx.studio/checkout-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Dec 2022 04:00:53 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <meta charset="utf-8">
+  <title>Pulimart</title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="Cartzilla - Bootstrap E-commerce Template">
+  <meta name="keywords"
+    content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean">
+  <meta name="author" content="Createx Studio">
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon and Touch Icons-->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="mask-icon" color="#fe6a6a" href="safari-pinned-tab.svg">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css" />
+  <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css" />
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="/productCss/theme.min.css">
+
+
+  <!-- Razor Pay Library -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+  <!-- Google Tag Manager-->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          '../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WKV3GT5');
+  </script>
+</head>
+<!-- Body-->
+
+<body class="handheld-toolbar-enabled">
+
+  <main class="page-wrapper">
+
+    <div class="page-title-overlap  pt-4" style="background-color: #20547d;">
+      <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+        <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+              <img src="landsheetImages/logo.png" alt="" width="90px" height="80px">
+              <h3 class="breadcrumb-item " style="color: rgb(207, 31, 69);">Pulimart</h3>
+            </ol>
+          </nav>
+        </div>
+        <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+          <h1 class="h3 text-light mb-0">Checkout</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-5 mb-2 mb-md-4">
+      <div class="row">
+        <section class="col-lg-8">
+          <!-- Steps-->
+          <!-- <div class="steps steps-light pt-2 pb-3 mb-5">
+              <a class="step-item active" href="/cartPage">
+                <div class="step-progress"><span class="step-count">1</span></div>
+                <div class="step-label">Cart</div></a><a class="step-item active current" href="/checkOut">
+                <div class="step-progress"><span class="step-count">2</span></div>
+                <div class="step-label">Details</div></a><a class="step-item" href="#">
+                <div class="step-progress"><span class="step-count">3</span></div>
+                <div class="step-label">Shipping</div></a><a class="step-item" href="#">
+                <div class="step-progress"><span class="step-count">4</span></div>
+                <div class="step-label">Payment</div></a>
+                <a class="step-item" href="/">
+                  <div class="step-progress"><span class="step-count">5</span></div>
+                  <div class="step-label">Back To Home</div></a></div> -->
+          <!-- Autor info-->
+
+          <div class="d-sm-flex justify-content-between align-items-center bg-secondary p-4 rounded-3 mb-grid-gutter">
+            <div class="d-flex align-items-center">
+              <div class="ps-3">
+                <h3 class="fs-base mb-0">Delivery Details</h3>
+              </div>
+            </div>
+          </div>
+
+
+          <h6 for="" class="mt-4">Select Address</h6>
+
+          <!-- --------------start heare------------------- -->
+
+          <% userData.Address.forEach((address, index)=> { %>
+            <div>
+              <input type="radio" name="address_id" class="address_id" value="<%= address._id %>" />
+              <div>
+                <div class=" a-<%= address._id %>">
+                  <%= address.name %>
+                </div>
+                <div class=" a-<%= address._id %>">
+                  <%= address.mobile %>
+                </div>
+                <div class=" a-<%= address._id %>">
+                  <%= address.postcode %>
+                </div>
+                <div class=" a-<%= address._id %>">
+                  <%= address.address %>
+                </div>
+                <div class=" a-<%= address._id %>">
+                  <%= address.city %>
+                </div>
+
+                <div class=" a-<%= address._id %>">
+                  <%= address.state %>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+
+              <!-- --------------end heare------------------- -->
+
+
+
+              <div class="d-flex justify-content-center">
+
+                <ul class="  pb-2 border-bottom  text-center">
+                  <p class="text-danger">If You Have Coupoun</p>
+                  <label for="">Enter Coupoun Code</label><br>
+                  <input type="text" id="coupoun">
+                  <div class="pt-3 d-flex justify-content-center">
+                    <button class="btn-outline-success rounded-pill" onclick="apply()">Apply</button>
+                  </div>
+
+                </ul>
+              </div>
+
+
+
+
+              <!-- Shipping address-->
+              <h4 class="h pt-1 pb-3 mb-3 border-bottom">Add Shipping Address</h4>
+              <div class="row">
+                <div class="col-12">
+                  <!-- <form action="/checkout" method="post"> -->
+                  <form action="/orderDetails" id="orderDetails" method="post">
+
+                    <label for="">Name</label>
+                    <input type="text" name="name" class="form-control name" required>
+
+                    <label for="">Mobile Number</label>
+                    <input type="text" name="mobile" class="form-control phoneNumber" required>
+
+                    <label for="">PostCode</label>
+                    <input type="text" name="postcode" class="form-control pinCode" required>
+
+                    <label for="">Address</label>
+                    <input type="text" name="address" class="form-control address " required>
+
+
+                    <label for="">City/District/Town</label>
+                    <input type="text" name="city" class="form-control district" required>
+
+                    <label for="">State</label>
+                    <input type="text" name="state" class="form-control state" required>
+
+                    <label for="">Country</label>
+                    <input type="text" name="country" class="form-control">
+                    
+                </div>
+              </div>
+
+
+              <!-- Navigation (desktop)-->
+              <div class="d-none d-lg-flex justify-content-center pt-4 mt-3">
+                <div class="w-50 pe-3"><a class="btn btn-success d-block w-100" href="/cartPage"><span
+                      class="d-none d-sm-inline">Back to Cart</a></div>
+                <!-- <div class="w-50 ps-2"><a class="btn btn-primary d-block w-100" href="checkout-shipping.html"><span class="d-none d-sm-inline">Proceed to Shipping</span><span class="d-inline d-sm-none">Next</span></a></div> -->
+              </div>
+        </section>
+        <!-- Sidebar-->
+        <aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">
+          <div class="bg-white rounded-3 shadow-lg p-4 ms-lg-auto">
+            <div class="py-2 px-xl-2">
+              <div class="widget mb-3">
+                <h2 class="widget-title text-center">Order summary</h2>
+                <% for(let res of cart.product){ %>
+                  <%=res.productId.price%>
+                    <div class="ps-2 text-center">
+                      <h3 class="widget-product-title">
+                        <%=res.name%>
+                      </h3>
+                      <div class="widget-product-meta"><span class="text-accent me-2">$<%=res.price%>
+                            .<small>00</small></span><span class="text-muted">x <%=res.quantity%></span></div>
+                    </div>
+              </div>
+              <%}%>
+
+
+                <ul class="list-unstyled fs-sm pb-2 border-bottom">
+                  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span
+                      class="text-end" id="total">
+                      <%=cart.totalPrice%>.<small>00</small>
+                    </span></li>
+                  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount</span><span
+                      class="text-end" id="discount"></span></li>
+                  <input type="hidden" name="discount" id="hiddenDiscount">
+                  <input type="hidden" name="percentage" id="hiddenPercentage">
+                </ul>
+                <h3 class="fw-normal text-center my-4" id="subtotal">
+                  <%=cart.totalPrice%>.<small></small>
+                </h3>
+
+                <div class="payment">
+                  <p class="text-center">Payment Method</p>
+                  <label class="radio-inline">
+                    <input type="radio" name="payment" value="COD" checked>COD</label>
+                  <br>
+                  <label class="radio-inline mt-2">
+                    <input type="radio" name="payment" value="ONLINE" checked>Online Payment</label>
+                  </label>
+
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <!-- <input type="submit" class="btn btn-success mt-4" value="Proceed To Shipping"> -->
+                  <button class="btn-success mt-4" onclick="order()">Proceed To Shipping</button>
+                </div>
+            </div>
+          </div>
+      </div>
+      </aside>
+      </form>
+    </div>
+
+    </div>
+  </main>
+
+
+  <!-- Toolbar for handheld devices (Default)-->
+  <div class="handheld-toolbar">
+    <div class="d-table table-layout-fixed w-100"><a class="d-table-cell handheld-toolbar-item"
+        href="account-wishlist.html"><span class="handheld-toolbar-icon"><i class="ci-heart"></i></span><span
+          class="handheld-toolbar-label">Wishlist</span></a><a class="d-table-cell handheld-toolbar-item"
+        href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        onclick="window.scrollTo(0, 0)"><span class="handheld-toolbar-icon"><i class="ci-menu"></i></span><span
+          class="handheld-toolbar-label">Menu</span></a><a class="d-table-cell handheld-toolbar-item"
+        href="shop-cart.html"><span class="handheld-toolbar-icon"><i class="ci-cart"></i><span
+            class="badge bg-primary rounded-pill ms-1">4</span></span><span
+          class="handheld-toolbar-label">$265.00</span></a></div>
+  </div>
+  <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span
+      class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">
+    </i></a>
+  <!-- Vendor scrits: js libraries and plugins-->
+  <!-- j Query Link Ajax -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+  <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+  <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <!-- Main theme script-->
+  <script src="productCss/theme.min.js"></script>
+
+</body>
+
+<!-- Mirrored from cartzilla.createx.studio/checkout-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Dec 2022 04:00:53 GMT -->
+
+</html>
+
+
+<script>
+
+  const addressRadio = document.querySelectorAll('.address_id')
+  const nameInput = document.querySelector('.name')
+  const phoneNumberInput = document.querySelector('.phoneNumber')
+  const pinCodeInput = document.querySelector('.pinCode')
+  const addressInput = document.querySelector('.address')
+  const discrictInput = document.querySelector('.district')
+  const stateInput = document.querySelector(".state")
+
+  addressRadio.forEach((address) => {
+    address.addEventListener('change', (event) => {
+      const addressId = event.target.value
+
+      const elements = document.querySelectorAll('.a-' + addressId)
+      console.log(elements.length);
+      elements.forEach((element, index) => {
+        if (index === 0) {
+          nameInput.value = element.textContent
+        } else if (index === 1) {
+          phoneNumberInput.value = element.textContent
+        } else if (index === 2) {
+          pinCodeInput.value = element.textContent
+        } else if (index === 3) {
+
+          addressInput.value = element.textContent
+        } else if (index === 4) {
+          discrictInput.value = element.textContent
+        } else {
+          stateInput.value = element.textContent
+        }
+      })
+
+
+    })
+  })
+  // ---------------Order Placing Cod/ ONline  ----proceed to shipping----
+
+  $('#orderDetails').submit((e) => {
+
+    e.preventDefault()
+
+    $.ajax({
+      url: '/orderDetails',
+      data: $('#orderDetails').serialize(),
+      method: 'post',
+      success: (response) => {
+        
+        if (response.orderData.paymentMethod == "COD") {
+          location.href = 'shipping'
+        } else {
+          
+          razorPayPayment(response.orders)
+        }
+
+      }
+    })
+    function razorPayPayment(order) {
+     
+      // order.subTotal*100,
+      var options = {
+        "key": "rzp_test_xk0UsGPRImH9dr", // Enter the Key ID generated from the Dashboard
+        "amount":order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
+        "name": "PuliMart",
+        "description": "Test Transaction",
+        "image": "/landsheetImages/logo.png",
+        "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+
+        "handler": function (response) {
+ 
+          verifyPayment(response,order)
+        },
+        "prefill": {
+          "name": "Gaurav Kumar",
+          "email": "gaurav.kumar@example.com",
+          "contact": "9000090000"
+        },
+        "notes": {
+          "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+          "color": "#3399cc"
+        }
+      };
+       var raz = new Razorpay (options);
+       raz.open();
+    }
+
+
+  })
+
+  function verifyPayment(payment,order) {
+
+    $.ajax({
+      url: '/verifyPayment',
+      data: {
+        payment,
+        order
+      },
+      method: 'post',
+      success(response){
+        if(response.success==true){
+          location.href = 'shipping'
+        }else{
+          alert("Payment Failed")
+        }
+      }
+
+    })
+  }
+
+
+  // ---------------Apply Coupoun ------------------
+
+  function apply() {
+
+    const code = document.getElementById('coupoun').value;
+    const price = parseInt(document.getElementById('total').innerHTML)
+
+    $.ajax({
+      url: '/couponCodeApply',
+      data: {
+        code: code,
+      },
+      method: 'POST',
+
+      success: function (response) {
+
+
+        if (response.percentage != undefined) {
+          alert(response.messege)
+          document.getElementById('discount').innerHTML = response.percentage + "%"
+          const percentage = response.percentage
+          const subtotal = price - (percentage / 100) * price;
+          document.getElementById('subtotal').innerHTML = subtotal
+          document.getElementById('hiddenPercentage').value = response.percentage
+
+
+        } else {
+          alert(response.messege)
+          document.getElementById('discount').innerHTML = response.discount
+          const subtotal = price - response.discount
+          document.getElementById('subtotal').innerHTML = subtotal
+          document.getElementById('hiddenDiscount').value = response.discount
+        }
+      },
+      error: function (xhr, status, error) {
+        // Handle error response here
+      }
+    });
+  }
+
+
+</script>

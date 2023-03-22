@@ -1,0 +1,50 @@
+<%- include('../layouts/header.ejs')%>
+
+<!-- <form action="/forget" method="post">
+    <% 
+     if(typeof messege !== 'undefined'){
+    %>
+       <h4> <%= messege %></h4>
+       <%
+     } 
+    %>
+     
+    <label for="">Enter your email Id</label>
+    <input type="email" name="email" placeholder="Enter your Email Id" required >
+    <input type="submit" value="Send Reset Password Link">
+
+</form> -->
+
+<!-- -------------------------------------- -->
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="card py-4 px-4">
+    <form action="/forget" method="post">
+      <h6> Reset Your Password</h6>
+     <% 
+  if(typeof messege !== 'undefined'){
+    %>
+      <h5 style="color: red"> <%=messege%> </h5>
+    <%
+      }else{
+
+     }
+     %>
+     
+      <div class="text-center mt-3">
+          
+      <span class="info-text">Please enter your Email Id For Resend Password</span>
+      
+      </div>
+      <div class="position-relative mt-3 form-input">
+        <input type="email" name="email" placeholder="Enter your Email Id" class="form-control" required>
+          <i class='bx bxs-phone'></i>
+      </div>
+      
+      <div class=" mt-5 d-flex justify-content-between align-items-center">
+          <input type="submit" value="Send Reset Password Link" class="go-button  bx bxs-right-arrow-alt">
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('../layouts/footer.ejs')%>

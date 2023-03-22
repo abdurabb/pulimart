@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+    rel="stylesheet">
+
+
+  <title>Pulimart</title>
+
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" type="text/css" href="/shopePage/css/bootstrap.min.css">
+
+  <link rel="stylesheet" type="text/css" href="/shopePage/css/font-awesome.css">
+
+  <link rel="stylesheet" href="/shopePage/css/templatemo-hexashop.css">
+
+  <link rel="stylesheet" href="/shopePage/css/owl-carousel.css">
+
+  <link rel="stylesheet" href="/shopePage/css/lightbox.css">
+</head>
+
+<body>
+
+  <!-- ***** Header Area Start ***** -->
+  <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #20547d">
+    <div class="container-fluid">
+      <a class="navbar-brand " href="/"><span><img width="100px" src="/landsheetImages/logo.png" alt="">
+          <h3 class="text-white">Pulimart</h3>
+        </span> </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+
+
+
+
+          <!-- -------sort Section---------------- -->
+
+          <select id="sort" name="sort" class="form-control">
+            <option value="low-to-high"> Low to High</option>
+            <option value="high-to-low"> High to Low</option>
+          </select>
+          <!-- -------------------- -->
+
+          <!-- Search section -->
+          <div class="p-5 ml-5">
+            <!-- <form action="/shope" class="d-flex  pl-4 ml-5">
+              <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+
+            <input type="search" name="search" id="searchField" class="form-control" placeholder="Search">
+          </div>
+
+        </ul>
+
+        <span class="p-5">
+
+          <a href="/profile"> <svg class="mr-2 " xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white"
+              class="bi bi-person" viewBox="0 0 16 16">
+              <path
+                d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+            </svg></a>
+
+          <a class="mr-2" href="/cartPage"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white"
+              class="bi bi-cart" viewBox="0 0 16 16">
+              <path
+                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg><span class="badge badge-success">
+              <%=cartCount%>
+            </span></a>
+
+          <a href="/wishlistPage"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white"
+              class="bi bi-heart" viewBox="0 0 16 16">
+              <path
+                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+            </svg><span class="badge badge-success">
+              <%=wishListCount%>
+            </span></a>
+
+
+        </span>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- drop down start -->
+  <%if(categoryData.length> 0){%>
+    <div class="dropdown" id="filter">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Category
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <%for (let i of categoryData){%>
+          <li><a class="dropdown-item" href="#" data-category="<%=i._id%>">
+              <%=i.name%>
+            </a></li>
+          <%}%>
+
+      </ul>
+    </div>
+    
+    <%}%>
+      <!-- drop down end -->
+
+      <!-- ***** Header Area End ***** -->
+
+      <!-- -------------------- -->
+      <div class="container-fluid pt- mt-5">
+        <div class="row" id="product">
+
+
+          <% pageProducts.forEach((product)=> { %>
+
+            <div class="col-12 col-md-4 col-lg-3">
+              <div class="box pt-3">
+                <div class="card" style="width: 18rem; ">
+                  <img height="250px" width="100%" src="/productimages/<%=product.image[0]%>" alt="">
+                  <div class="card-body ">
+                    <div class="text-center">
+                      <span>
+                        <h6 class="card-title">
+                          <%=product.name%>
+                        </h6>Rs.<%=product.price%>
+                      </span>
+                      <p class="card-text">
+                        <%=product.description%>
+                      </p>
+                    </div>
+                    <div class="text-center">
+
+                      <a href="/view_details?id=<%=product._id%>"> <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                          height="20" fill="red" class="bi bi-0-circle" viewBox="0 0 16 16">
+                          <path
+                            d="M7.988 12.158c-1.851 0-2.941-1.57-2.941-3.99V7.84c0-2.408 1.101-3.996 2.965-3.996 1.857 0 2.935 1.57 2.935 3.996v.328c0 2.408-1.101 3.99-2.959 3.99ZM8 4.951c-1.008 0-1.629 1.09-1.629 2.895v.31c0 1.81.627 2.895 1.629 2.895s1.623-1.09 1.623-2.895v-.31c0-1.8-.621-2.895-1.623-2.895Z" />
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z" />
+                        </svg></a>
+
+
+                      <a href="/addToCArt?id=<%=product._id%>" class="p-3"><svg xmlns="http://www.w3.org/2000/svg"
+                          width="20" height="20" fill="black" class="bi bi-cart" viewBox="0 0 16 16">
+                          <path
+                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                        </svg></a>
+
+
+                      <a href="/addToWishList?id=<%=product._id%>"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                          height="20" fill="green" class="bi bi-heart" viewBox="0 0 16 16">
+                          <path
+                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                        </svg></a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+
+
+        </div>
+      </div>
+
+      <div>
+        <div class="text-center pt-5 mt-5">
+          <% for (let i=1; i <=totalPages; i++) { %>
+            <% if (i===currentPage) { %>
+              <span>
+
+                <!-- <button>
+                  <%= i %>
+                </button> -->
+
+                <button  onclick="toAjax('<%= i%>')">
+                  <%= i %>
+                </button>
+              </span>
+
+              <% } else { %>
+                <!-- <a href="/shope?page=<%= i %>">
+                  <button>
+                    <%= i %>
+                  </button>
+                </a> -->
+
+
+
+                <button onclick="toAjax('<%=i%>')">
+                  <%= i %>
+                </button>
+
+                <% } %>
+                  <% } %>
+        </div>
+      </div>
+
+
+      <!-- -------------------- -->
+
+
+
+      <!-- ***** Footer Start ***** -->
+      <footer class="" style="background-color: #20547d">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="first-item">
+                <div class="logo">
+                  <img src="/landsheetImages/logo.png" alt="hexashop ecommerce templatemo">
+                </div>
+                <ul>
+                  <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
+                  <li><a href="#">hexashop@company.com</a></li>
+                  <li><a href="#">010-020-0340</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <h4>Shopping &amp; Categories</h4>
+              <ul>
+                <li><a href="#">Men’s Shopping</a></li>
+                <li><a href="#">Women’s Shopping</a></li>
+                <li><a href="#">Kid's Shopping</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3">
+              <h4>Useful Links</h4>
+              <ul>
+                <li><a href="#">Homepage</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3">
+              <h4>Help &amp; Information</h4>
+              <ul>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">FAQ's</a></li>
+                <li><a href="#">Shipping</a></li>
+                <li><a href="#">Tracking ID</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-12">
+              <div class="under-footer">
+                <p>Copyright © 2022 HexaShop Co., Ltd. All Rights Reserved.
+
+                  <br>Design: <a href="https:/templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
+
+                  <br>Distributed By: <a href="https://themewagon.com" target="_blank"
+                    title="free & premium responsive templates">ThemeWagon</a>
+                </p>
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                  <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+      <!-- bootstrap css link -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+      <!-- jQuery -->
+      <script src="/shopePage/js/jquery-2.1.0.min.js"></script>
+
+      <!-- Bootstrap -->
+      <script src="/shopePage/js/popper.js"></script>
+      <script src="/shopePage/js/bootstrap.min.js"></script>
+
+      <!-- Plugins -->
+      <script src="/shopePage/js/owl-carousel.js"></script>
+      <script src="/shopePage/js/accordions.js"></script>
+      <script src=/shopePage/js/datepicker.js></script>
+      <script src="/shopePage/js/scrollreveal.min.js"></script>
+      <script src="/shopePage/js/waypoints.min.js"></script>
+      <script src="/shopePage/js/jquery.counterup.min.js"></script>
+      <script src="/shopePage/js/imgfix.min.js"></script>
+      <script src="/shopePage/js/slick.js"></script>
+      <script src="/shopePage/js/lightbox.js"></script>
+      <script src="/shopePage/js/isotope.js"></script>
+
+      <!-- Global Init -->
+      <script src="/shopePage/js/custom.js"></script>
+
+
+
+      <script>
+
+        var categoryId;
+        var selectedValue;
+        let searchValue;
+
+        // searching the products
+        const searchInput = document.querySelector('#searchField')
+        searchInput.addEventListener('input', (event) => {
+          event.preventDefault()
+          const search = event.target.value
+          searchValue = search
+          toAjax()
+        })
+
+        // Filtering the products
+        $('a.dropdown-item').click(function (e) {
+          e.preventDefault();
+          categoryId = $(this).data('category');
+
+          toAjax()
+        })
+
+
+        // sort Products
+        const sortSelect = document.getElementById('sort');
+        sortSelect.addEventListener('change', (event) => {
+          selectedValue = event.target.value;
+
+          toAjax()
+
+        });
+
+
+        function toAjax(page) {
+          $.ajax({
+            url: '/shope',
+            data: {
+              categoryId: categoryId,
+              sort: selectedValue,
+              page: page,
+              search: searchValue,
+              isRender: "true"
+            },
+            method: 'get',
+            success: (response) => {
+              if (response.product) {
+                let html = '';
+                for (let i = 0; i < response.pageProducts.length; i++) {
+                  html += `
+                  <div class="col-12 col-md-4 col-lg-3">
+          <div class="box pt-3">
+            <div class="card" style="width: 18rem; ">
+              <img height="250px" width="100%" src="/productimages/${response.pageProducts[i].image[0]}" alt="">
+              <div class="card-body "> 
+                <div class="text-center">
+                <span><h6 class="card-title">
+                  ${response.pageProducts[i].name}
+                </h6>Rs.${response.pageProducts[i].price}</span>
+                <p class="card-text">
+                  ${response.pageProducts[i].description}
+                </p>
+              </div>
+              <div class="text-center">
+               
+                <a href="/view_details?id=${response.pageProducts[i]._id}"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-0-circle" viewBox="0 0 16 16">
+                  <path d="M7.988 12.158c-1.851 0-2.941-1.57-2.941-3.99V7.84c0-2.408 1.101-3.996 2.965-3.996 1.857 0 2.935 1.57 2.935 3.996v.328c0 2.408-1.101 3.99-2.959 3.99ZM8 4.951c-1.008 0-1.629 1.09-1.629 2.895v.31c0 1.81.627 2.895 1.629 2.895s1.623-1.09 1.623-2.895v-.31c0-1.8-.621-2.895-1.623-2.895Z"/>
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z"/>
+                </svg></a>
+
+
+                <a href="/addToCArt?id=${response.pageProducts[i]._id}" class="p-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-cart" viewBox="0 0 16 16">
+                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg></a>
+
+
+               <a href="/addToWishList?id=${response.pageProducts[i]._id}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green" class="bi bi-heart" viewBox="0 0 16 16">
+                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                </svg></a> 
+
+              </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+                  `
+                }
+                document.getElementById('product').innerHTML = html
+              }
+            }
+          })
+        }
+      </script>
+
+</body>
+
+</html>

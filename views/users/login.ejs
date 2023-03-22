@@ -1,0 +1,89 @@
+<%- include('../layouts/header.ejs')%>
+
+  <!-- <h1>this is login page </h1>
+
+<label for="">Enter User Id</label><br>
+<input type="email" name="email" placeholder="Enter your Email" required><br>
+<br>
+<label for="">Enter Password</label><br>
+<input type="password" name="password" placeholder="Enter your Password" required><br>
+<br>
+<a href="/signup">Signup</a> -->
+
+
+  <style>
+    .divider:after,
+    .divider:before {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #eee;
+    }
+
+    body {
+      background-color: #152723;
+    }
+
+    .h-custom {
+      height: calc(100% - 73px);
+    }
+
+    @media (max-width: 450px) {
+      .h-custom {
+        height: 100%;
+      }
+    }
+  </style>
+  <section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://m.media-amazon.com/images/I/51M4y8YZAtL._SY498_BO1,204,203,200_.jpg" class="img-fluid rounded-circle"
+            alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form action="/login" method="post">
+            <div class="d-flex justify-content-center p-4">
+              <h5 class="text-white">WELCOME TO PULIMART BOOK STORE</h5>
+            </div>
+            <% if(typeof messege !=='undefined' ){ %>
+              <h5 style="color: red">
+                <%=messege%>
+              </h5>
+              <% }else{ } %>
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input type="email" name="email" placeholder="Enter a valid email address"
+                    class="form-control form-control-lg" required>
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-3">
+                  <input type="password" name="password" placeholder="Enter your Password"
+                    class="form-control form-control-lg" required>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <!-- Checkbox -->
+                  <div class="form-check mb-0">
+
+                  </div style=" height 50px">
+                  <a href="/forget" class="text-white ">Forgot password?</a>
+                </div>
+
+                <div class="text-center text-lg-start ">
+                  <input type="submit" value="Login" class="btn btn-primary btn-lg"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                  <p class="small fw-bold mt-2 pt-1 mb-0 text-white">Don't have an account? <a href="/signup"
+                      class="link-danger">Register</a></p>
+                     
+                </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <%- include('../layouts/footer.ejs')%>

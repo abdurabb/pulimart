@@ -1,0 +1,175 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+    
+
+<head>
+    <meta charset="utf-8">
+    <title> Pulimart</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="/landsheetImages/logo.png" rel="icon">
+
+    <!-- Google Web Fonts  -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/adminHome/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/adminHome/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <style>
+        #preview {
+            width: 100%;
+            padding-left: 20px;
+            /* height: 300px; */
+
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #preview img {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+
+        }
+    </style>
+
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <div class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Pulimart</h3>
+                </div>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="/landsheetImages/logo.png" alt=""
+                            style="width: 40px; height: 40px;">
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="/admin/home" class="nav-item nav-link "><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="/admin/userManagement" class="nav-item nav-link"><i class="fa fa-th me-2"></i>User</a>
+                    <a href="/admin/product" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Product</a>
+                    <a href="/admin/category" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Category</a>
+                    <a href="/admin/orderManagement" class="nav-item nav-link "><i
+                            class="fa fa-table me-2"></i>Order</a>
+                    <a href="/admin/coupounManagement" class="nav-item nav-link "><i
+                            class="fa fa-table me-2"></i>Coupon</a>
+                    <a href="/admin/logout" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Logout</a>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+        
+        <div class="content">
+         <!-- Navbar Start -->
+         <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+
+            
+            
+            <div class="d-none d-md-flex justify-content-center ms-4">
+                <h2 class="text-center text-primary">Add New Image</h2>
+
+            </div>
+
+
+
+            <div class="navbar-nav align-items-center ms-auto">
+
+                <div class="nav-item ">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <img class="rounded-circle me-lg-2" src="/landsheetImages/logo.png" alt=""
+                            style="width: 40px; height: 40px;">
+                        <span class="d-none d-lg-inline-flex">Admin Panel</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">My Profile</a>
+                        <a href="#" class="dropdown-item">Settings</a>
+                        <a href="/admin/logout" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+        <!-- ------- -->
+
+    <div class="d-flex justify-content-center align-items-center">
+        <section>
+            <div class="container mt-4">
+                <div class="row">
+
+                    <div class="col-12">
+                        
+
+                        <div class="text-end">
+                            <a href="/admin/product"><input type="submit" value="Back"
+                                    class="btn btn-outline-light "></a>
+                        </div>
+                        
+                        <form action="/admin/addNewImage?id=<%=id%>"method='post'enctype="multipart/form-data" class="text-white">
+
+                            <div id="preview" class="col-lg-3 mt-3"></div>
+                            <label for="" class="">Image</label>
+                            <input type="file" name="image" id="fileInput" class="form-control" multiple required>
+                           
+                            
+                            <button class="btn btn-outline-light mt-5" >Submit</button>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
+    <script>
+
+        const fileInput = document.getElementById('fileInput');
+        const preview = document.getElementById('preview');
+
+        fileInput.addEventListener('change', () => {
+            preview.innerHTML = '';
+            const files = fileInput.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.addEventListener('load', () => {
+                    const img = new Image();
+                    img.src = reader.result;
+                    preview.appendChild(img);
+                });
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        
+    </script>
+    <%- include('../layouts/adminFooter.ejs') -%>
+
+  

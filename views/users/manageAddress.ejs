@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from cartzilla.createx.studio/account-address.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Dec 2022 04:02:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <title>Pulimart</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Cartzilla - Bootstrap E-commerce Template">
+    <meta name="keywords" content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#fe6a6a" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
+    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="/productCss/theme.min.css">
+    <!-- Google Tag Manager-->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      '../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-WKV3GT5');
+    </script>
+  </head>
+  <!-- Body-->
+  <body class="handheld-toolbar-enabled">
+    <main class="page-wrapper">
+  
+      <div class="page-title-overlap  pt-4" style="background-color: #20547d">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+          <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+           <a href="/"><nav aria-label="breadcrumb">
+              <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                <img width="100px " height="50px" src="landsheetImages/logo.png" alt="">
+                <div class="breadcrumb-item text-nowrap "><h3 href="#" class="" style="color: crimson;">Pulimart</h3>
+                </div>
+              </ol>
+            </nav></a> 
+          </div>
+          <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+            <h1 class="h3 text-light mb-0">My addresses</h1>
+          </div>
+        </div>
+      </div>
+      <!-- ----------------- -->
+      <!-- <div class="steps steps-light pt-2 pb-3 mb-5"><a class="step-item active" href="/profile">
+        <div class="step-progress"><span class="step-count">1</span></div>
+        <div class="step-label">Profile</div></a>
+        <a class="step-item active " href="/manageAddress">
+          <div class="step-progress"><span class="step-count">2</span></div>
+          <div class="step-label">Manage Address</div></a><a class="step-item  " href="/addNewAddress">
+          <div class="step-progress"><span class="step-count">3</span></div>
+          <div class="step-label">Add New Address</div></a></div> -->
+      <!-- --------------- -->
+
+
+      <div class="container pb-5 mb-2 mb-md-4">
+        <div class="row">
+          <!-- Sidebar-->
+          <aside class="col-lg-4 pt-4 pt-lg-0 pe-xl-5">
+            <div class=" rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
+              <!-- -------------------------------- -->
+              <div class="osahan-account-page-left shadow-sm bg-white h-100">
+                <div class="border-bottom p-4">
+                    <div class="osahan-user text-center">
+                        <div class="osahan-user-media">
+                            <img class="mb-3 rounded-pill shadow-sm mt-1" width="50px" height="50px" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="gurdeep singh osahan">
+                            <div class="osahan-user-media-body">
+                                <h6 class="mb-2"> <%=userData.name%></h6>
+                                <p class="mb-1"> <%=userData.email%></p>
+                                <p><%=userData.phone%></p>
+                                <!-- <p class="mb-0 text-black font-weight-bold"><a class="text-primary mr-3" data-toggle="modal" data-target="#edit-profile-modal" href="#"><i class="icofont-ui-edit"></i> EDIT</a></p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center"> 
+                  <a href="/addNewAddress"> <button type="button" class="btn btn-primary">Add New Address</button></a> 
+                   </div>
+            </div>
+          </aside>
+          <!-- Content  -->
+          <section class="col-lg-8">
+            <!-- Toolbar-->
+            <div class="d-none d-lg-flex justify-content-between align-items-center pt-lg-3 pb-4 pb-lg-5 mb-lg-3">
+           
+            </div>
+            <!-- Addresses list-->
+          
+            <div class="table-responsive fs-md">
+              <h5>List of your Registred Address</h5>
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Address</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                 <%for(let res of userData.Address) {%>
+                    <tr>
+                    <td class="py-3 align-middle"><%=res.name%> , <%=res.address%> <%=res.city%>, <%=res.state%> , <%=res.country%>,Pin <%=res.postcode%>,Mobile <%=res.mobile%></td>
+                    <td class="py-3 align-middle"><a class="me-2 " style="color: black;" href="/updateAddress?id=<%=res._id%>"  title="Edit">Edit</a><a class="nav-link-style text-danger" href="/deleteAddress?id=<%=res._id%>" data-bs-toggle="tooltip" title="Remove"
+                      onclick="return confirm('Are you sure you want to delete this Address?')">delete </a></td>
+                  </tr>
+                  <%}%>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+   
+   
+    <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Main theme script-->
+    <script src="/productCss/theme.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  </body>
+
+<!-- Mirrored from cartzilla.createx.studio/account-address.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Dec 2022 04:02:18 GMT -->
+</html>

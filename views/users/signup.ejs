@@ -1,0 +1,60 @@
+<%- include('../layouts/header.ejs')%>
+
+  <section class="h-100 h-custom" style="background-color: #152723;" >
+   
+    <div class="container py-5 h-80">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-8 col-xl-6">
+          <div class="card rounded-3">
+            <img
+              src="https://media.sketchfab.com/models/eac9c98de25c429a9f5df719ac2fb261/thumbnails/8f47a4f7892b455e9b15888804783e1e/510964aa88214a879fef352d063d107b.jpeg"
+              class="w-100"  height="220px" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;" alt="Sample photo">
+            <div class="card-body p-4 p-md-5 bg-dark">
+              <div class="d-flex justify-content-center " style="height: 50px;">
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 text-white">WELCOME TO PULIMART</h3>
+              </div>
+              <div class="d-flex justify-content-center ">
+                <h5 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 text-white">Online Book House</h5>
+              </div>
+
+              <form class="px-md-2" action="/signup" method="post">
+              <div class="d-flex justify-content-center ">
+                <% if(typeof messege !=='undefined' ){ %>
+                  <h5 style="color: rgb(218, 57, 8)">
+                    <%=messege%>
+                  </h5>
+                  <% }else{ } %>
+              </div>
+                
+
+                    <div class="form-outline mb-4">
+                      <input type="text" name="name" placeholder="Enter your Name" class="form-control" required>
+                    </div>
+
+
+                    <div class="form-outline datepicker">
+                      <input type="tel" name="phone" placeholder="Enter your Phone Number" class="form-control"
+                        required><br>
+                    </div>
+                    
+                    <div class="form-outline datepicker">
+                      <input type="email" name="email" placeholder="Enter your Email" class="form-control" required><br>
+                    </div>
+                    
+                    <div class="form-outline datepicker">
+                      <input type="password" name="password" placeholder="Enter your Passwword" class="form-control"
+                        required><br>
+                    </div>
+                    <div class=" d-flex justify-content-center">
+                      <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>
+                    </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('../layouts/footer.ejs')%>

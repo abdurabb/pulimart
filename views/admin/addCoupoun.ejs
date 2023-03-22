@@ -1,0 +1,82 @@
+<%- include('../layouts/adminHeader.ejs') -%>
+
+
+  <style>
+    #preview {
+      width: 100%;
+      padding-left: 20px;
+      /* height: 300px; */
+
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #preview img {
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+
+    }
+  </style>
+
+  <div class="d-flex justify-content-center">
+    <section>
+      <div class="container mt-4">
+        <div class="row">
+
+          <div class="col-12">
+            <h2 class="text-center text-dark">Create New Coupoun</h2>
+            <div class="text-end">
+              <a href="/admin/coupounManagement"><input type="submit" value="Back" class="btn btn-outline-dark "></a>
+            </div>
+            <form action="/admin/addCoupoun" method="post" class="text-white">
+              <!-- ----- -->
+              <% if(messege !=undefined){ %>
+                <h4 style="color: crimson;">
+                  <%= messege %>
+                </h4>
+                <% } %>
+                  <!-- ------ -->
+
+                  <input type="text" name="code" class="form-control mt-4" placeholder="Coupoun Code" required>
+
+                  <label for="" class="mt-4 text-dark">Discount Type</label>
+                  <select name="discountType" id="" class="form-control ">
+                    <option value="">Select Discount Type</option>
+                    <option value="percentage">percentage</option>
+                    <option value="flat">flat</option>
+
+                  </select>
+
+
+                  <input type="text" name="discount" class="form-control mt-4" placeholder="Discount Amount" required>
+
+                  <input type="text" name="maxdiscount" class="form-control mt-4" placeholder="Max Discount Amount"
+                    required>
+
+
+                  <input type="text" name="minPurchase" class="form-control mt-4" placeholder="Min Purchase" required>
+
+
+                  <!-- <input type="text"name="createDate"class="form-control mt-4" placeholder="Starting Date" required> -->
+
+
+                  <input type="datetime-local" name="expiryDate" class="form-control mt-4" placeholder="expiry Date"
+                    required>
+
+                  <div class="d-flex justify-content-center">
+                    <input type="submit" value="Submit" class="btn btn-success mt-4">
+                  </div>
+
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+
+  <%- include('../layouts/adminFooter.ejs') -%>

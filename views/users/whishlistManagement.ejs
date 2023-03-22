@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from cartzilla.createx.studio/shop-cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Dec 2022 04:00:53 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <meta charset="utf-8">
+  <title>Pulimart</title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="Cartzilla - Bootstrap E-commerce Template">
+  <meta name="keywords"
+    content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean">
+  <meta name="author" content="Createx Studio">
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon and Touch Icons-->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="mask-icon" color="#fe6a6a" href="safari-pinned-tab.svg">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
+  <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css" />
+  <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css" />
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="/productCss/theme.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- Google Tag Manager-->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          '../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WKV3GT5');
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<!-- Body-->
+
+<body class="handheld-toolbar-enabled">
+  <!-- Google Tag Manager (noscript)-->
+
+  <!-- Sign in / sign up modal-->
+  <main class="page-wrapper">
+    <!-- Navbar 3 Level (Light)-->
+
+    <!-- Page Title-->
+    <div class="page-title-overlap pt-3" style="background-color: #20547d;">
+      <div class="container d-lg-flex justify-content-between ">
+       <a href="/"> <div class="order-lg-2 mb-2 mb-lg-0 ">
+          <img src="landsheetImages/logo.png" alt="" width="90px" height="80px">
+          <h3 class=" " style="color: crimson;">Pulimart</h3>
+        </div></a>
+        <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+          <h1 class="h3 text-light mb-0">Your Favourite </h1>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container pb-5 mb-2 mb-md-4">
+      <div class="row">
+        <!-- List of items-->
+
+        <section class="col-12">
+          <div class="d-flex justify-content-between align-items-center pt-3 pb-4 pb-sm-5 mt-1">
+            <h2 class="h6 text-light mb-0">Products</h2>
+          </div>
+          <!-- Item-->
+          <%if(wishListProducts.length>0){%>
+               
+            <table class="table  text-center">
+                <thead class="thead-dark ">
+                  <tr>
+                    <th scope="col">Sl-No</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Move to Cart</th>
+
+                  </tr>
+                </thead>
+                <% for(let i=0;i<wishListProducts.length;i++){ %>
+                <tbody>
+                  <tr>
+                    <th scope="row" class="pt-5"><%=i+1%></th>
+                    <td class=""> <img width="80px" height="" src="/productimages/<%=products[i].image[0]%>" alt=""> </td>
+                    <td class="pt-5"><%=wishList.product[i].name%></td>
+                    <td class="pt-5"><%=wishList.product[i].price%></td>
+                    
+                    <td class="pt-5"><a href="/removeWishList?id=<%=products[i]._id%>">
+                        <button class="btn-outline-danger rounded-pill">Remove</button> </a>
+                    </td>
+                    <td class="pt-5">
+                      <a href="/addToCart?id=<%=products[i]._id%>">
+                        <button class="btn-outline-success rounded-pill">Add to Cart</button> </a>
+                  </tr>
+
+                  <%}%>
+                </tbody>
+               
+              </table>
+                <%} else {%>
+                  <div class="text-center">
+                    <h1 class="text-danger"> Your WishList is Empty</h1>
+                    <a href="/shope"><button class="btn btn-outline-success">Please Add The Product</button></a>
+                  </div>
+                  <%}%>
+                   
+                    <!-- item -->
+        </section>
+        <!-- Sidebar-->
+        
+      </div>
+    </div>
+  </main>
+  <!-- Footer-->
+
+  
+
+  <!-- Toolbar for handheld devices (Default)-->
+  <div class="handheld-toolbar">
+    <div class="d-table table-layout-fixed w-100"><a class="d-table-cell handheld-toolbar-item"
+        href="account-wishlist.html"><span class="handheld-toolbar-icon"><i class="ci-heart"></i></span><span
+          class="handheld-toolbar-label">Wishlist</span></a><a class="d-table-cell handheld-toolbar-item"
+        href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        onclick="window.scrollTo(0, 0)"><span class="handheld-toolbar-icon"><i class="ci-menu"></i></span><span
+          class="handheld-toolbar-label">Menu</span></a><a class="d-table-cell handheld-toolbar-item"
+        href="shop-cart.html"><span class="handheld-toolbar-icon"><i class="ci-cart"></i><span
+            class="badge bg-primary rounded-pill ms-1">4</span></span><span
+          class="handheld-toolbar-label">$265.00</span></a></div>
+  </div>
+
+  <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span
+      class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">
+    </i></a>
+  <!-- Vendor scrits: js libraries and plugins-->
+  <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+  <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <!-- Main theme script-->
+  <script src="/productCss/theme.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+</body>
+
+<!-- Mirrored from cartzilla.createx.studio/shop-cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Dec 2022 04:00:53 GMT -->
+
+</html>

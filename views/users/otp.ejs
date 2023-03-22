@@ -1,0 +1,56 @@
+<%- include('../layouts/header.ejs')%>
+
+
+
+
+<div class="d-flex justify-content-center align-items-center container pt-5 mt-5">
+  <div class="card py-5 px-3">
+    <form action="/otp" method="post">
+
+      <% 
+        if(typeof messege !== 'undefined'){
+      %>
+      <h5 style="color: red"> <%= messege %> </h5>
+       <!-- <a href="/resend"><button>resend otp</button></a> -->
+     <%
+     }else{
+
+}
+%>
+      <h5 class="m-0">OTP verification</h5><span class="mobile-text">Enter the code we just send on your mobile phone </span>
+      <div class="d-flex flex-row mt-5"><input type="text" name="otp"  class="form-control" autofocus=""></div>
+      <h6 id="countdown-timer"></h6>
+      <a href="/resend" id="resend" ></a>
+      <button class="go-button mt-5 ">Submit</button>
+    </form>
+    </div>
+</div>
+
+<script>
+  // Set the number of seconds to count down from
+var seconds = 30;
+
+// Get the countdown timer element from the HTML document
+var countdownTimer = document.getElementById("countdown-timer");
+
+// Update the countdown timer every second
+var countdownInterval = setInterval(function() {
+  // Decrement the number of seconds remaining
+  seconds--;
+
+  // Update the countdown timer element with the new time
+  countdownTimer.innerHTML = seconds + " seconds remaining";
+
+  // If the countdown timer has reached 0, stop the interval and display a message
+  if (seconds === 0) {
+    clearInterval(countdownInterval);
+    document.getElementById('resend').innerHTML = "Resend Otp";
+  }
+}, 1000);
+
+</script>
+
+<%- include('../layouts/footer.ejs')%>
+
+
+
