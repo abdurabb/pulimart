@@ -30,9 +30,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Google Tag Manager-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WKV3GT5');
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 <!-- Body-->
 
@@ -43,156 +51,135 @@
     <main class="page-wrapper">
         <!-- Navbar 3 Level (Light)-->
 
-
-
+        <!-- Page Title-->
         <div class="page-title-overlap pt-3" style="background-color: #20547d;">
             <div class="container d-lg-flex justify-content-between ">
-                <ol>
-                   <a href="/"> <div class="order-lg-2 mb-2 mb-lg-0 ">
-                        <img src="landsheetImages/logo.png" width="100px" height="50px" alt="">
+                <a href="/">
+                    <div class="order-lg-2 mb-2 mb-lg-0 ">
+                        <img src="landsheetImages/logo.png" alt="" width="90px" height="80px">
                         <h3 class=" " style="color: crimson;">Pulimart</h3>
-                    </div></a>
-                </ol>
+                    </div>
+                </a>
                 <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-                    <h1 class="h3 text-light mb-0">Order Details</h1>
+                    <h1 class="h3 text-light mb-0">Your Orders</h1>
                 </div>
+
             </div>
         </div>
 
+       
 
-        <!-- 
-        <div class="container pb-5 mb-2 mb-md-4">
-            <div class="row"> -->
-        <!-- List of items-->
+                <!-- List of items-->
 
 
+                <%if(order.length>0) {%>
+                    <!-- ----------- -->
+                    <div class="table-responsive mt-3"  data-simplebar>
+                    <table class="table col-12 ">
+                        <thead class="  text-center " style="background-color: #20547d; ">
+                            <tr>
 
+                                <th scope="col" class="pl-5 ">
+                                    <p class="text-white "> Order Id</p>
+                                </th>
+                                <th scope="col" class="pl-5">
+                                    <p class="text-white"> Customer Name </p>
+                                </th>
+                                <th scope="col" class="pl-5">
+                                    <p class="text-white"> Address </p>
+                                </th>
+                                <th scope="col" class="pl-5">
+                                    <p class="text-white"> Payment</p>
+                                </th>
+                                <th scope="col" class="pl-5">
+                                    <p class="text-white"> Date</p>
+                                </th>
+                                <th scope="col" class="pl-5">
+                                    <p class="text-white">Price</p>
+                                </th>
+                                <th scope="col" class="pl-5">
+                                    <p class="text-white"> Coupon Discount</p>
+                                </th>
+                                <th scope="col" class="pl-5">
+                                    <p class="text-white"> SubTotal</p>
+                                </th>
 
-        <div class="col-12">
-            <div class="d-flex justify-content-between align-items-center pt-3 pb-4 pb-sm-5 mt-1">
-                <span>
-                    <h2 class="h6 text-light mb-0">Product Details</h2>
-                </span> 
-            </div>
-        </div>
-
-        <%if(order.length>0) {%>
-            <!-- ----------- -->
-            <div class="col-12">
-                <table class="table ">
-                    <thead class="  text-center " style="background-color: #20547d;;">
-                        <tr>
-
-                            <th scope="col" class="pl-5 ">
-                                <p class="text-white "> Order Id</p>
-                            </th>
-                            <th scope="col" class="pl-5">
-                                <p class="text-white"> Customer Name </p>
-                            </th>
-                            <th scope="col" class="pl-5">
-                                <p class="text-white"> Address </p>
-                            </th>
-                            <th scope="col" class="pl-5">
-                                <p class="text-white"> Payment</p>
-                            </th>
-                            <th scope="col" class="pl-5">
-                                <p class="text-white"> Date</p>
-                            </th>
-                            <th scope="col" class="pl-5">
-                                <p class="text-white">Price</p>
-                            </th>
-                            <th scope="col" class="pl-5">
-                                <p class="text-white"> Coupon Discount</p>
-                            </th>
-                            <th scope="col" class="pl-5">
-                                <p class="text-white"> SubTotal</p>
-                            </th>
-
-                            <th scope="col" class="pl-5">
-                                <p class="text-white"> Status</p>
-                            </th>
-                            <th scope="col" class="pl-5">
-                                <p class="text-white"> Track Order</p>
-                            </th>
-                        </tr>
-                    </thead>
-                    <!-- <tbody class="text-center "> -->
-                    <tbody class="text-center  ">
-                        <%for(let i of order){%>
-
-                            <tr class="table-success">
-
-
-                                <td class="pl-5">
-                                    <%=i._id%>
-                                </td>
-                                <td class="pl-5">
-                                    <%=i.customer.name%>
-                                </td>
-                                <td class="pl-5">
-                                    <%=i.customer.Address%>,<%=i.customer.
-                                    postcode%>,<%=i.customer.city%>,<%=i.customer.phone%>
-                                </td>
-
-                                <td class="pl-5">
-                                    <%=i.paymentMethod%>
-                                </td>
-                                <td class="pl-5">
-                                    <%=i.createdDate.toLocaleDateString()%>
-                                </td>
-                                <td class="pl-5">
-                                    <%=i.totalPrice%>
-                                </td>
-                                <td class="pl-5">
-                                    <%=i.discout%>
-                                </td>
-                                <td class="pl-5">
-                                    <%=i.subTotal%>
-                                </td>
-
-                                <td>
-                                    <%= i.status%>
-                                </td>
-
-                                <td class="pl-5"><a href="/orderDetail?id=<%=i._id%>">
-                                        <button class="rounded-pill" style="background-color: #20547d;">View</button>
-                                    </a>
-                                </td>
+                                <th scope="col" class="pl-5">
+                                    <p class="text-white"> Status</p>
+                                </th>
+                                <th scope="col" class="pl-5">
+                                    <p class="text-white"> Track Order</p>
+                                </th>
                             </tr>
+                        </thead>
+                        <!-- <tbody class="text-center "> -->
+                        <tbody class="text-center  ">
+                            <%for(let i of order){%>
 
-                            <%}%>
-                                <!-- </tbody> -->
-                    </tbody>
-                </table>
+                                <tr class="table-success">
+
+
+                                    <td class="pl-5">
+                                        <%=i._id%>
+                                    </td>
+                                    <td class="pl-5">
+                                        <%=i.customer.name%>
+                                    </td>
+                                    <td class="pl-5">
+                                        <%=i.customer.Address%>,<%=i.customer. postcode%>,<%=i.customer.city%>,
+                                                    <%=i.customer.phone%>
+                                    </td>
+
+                                    <td class="pl-5">
+                                        <%=i.paymentMethod%>
+                                    </td>
+                                    <td class="pl-5">
+                                        <%=i.createdDate.toLocaleDateString()%>
+                                    </td>
+                                    <td class="pl-5">
+                                        <%=i.totalPrice%>
+                                    </td>
+                                    <td class="pl-5">
+                                        <%=i.discout%>
+                                    </td>
+                                    <td class="pl-5">
+                                        <%=i.subTotal%>
+                                    </td>
+
+                                    <td>
+                                        <%= i.status%>
+                                    </td>
+
+                                    <td class="pl-5"><a href="/orderDetail?id=<%=i._id%>">
+                                            <button class="rounded-pill"
+                                                style="background-color: #20547d;">View</button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <%}%>
+                                    <!-- </tbody> -->
+                        </tbody>
+                    </table>
+                </div>
+
+                    <!-- ------------- -->
+                    <%} else {%>
+                        Did not Orderd anything please Purchase
+                        <%}%>
+
+
+                            <!-- Sidebar-->
+
             </div>
-            <!-- ------------- -->
-            <%} else {%>
-                Did not Orderd anything please Purchase
-                <%}%>
-
-
-                    <!-- Sidebar-->
-
-                    </div>
-                    </div>
+        </div>
     </main>
     <!-- Footer-->
 
 
 
     <!-- Toolbar for handheld devices (Default)-->
-    <div class="handheld-toolbar">
-        <div class="d-table table-layout-fixed w-100"><a class="d-table-cell handheld-toolbar-item"
-                href="account-wishlist.html"><span class="handheld-toolbar-icon"><i class="ci-heart"></i></span><span
-                    class="handheld-toolbar-label">Wishlist</span></a><a class="d-table-cell handheld-toolbar-item"
-                href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                onclick="window.scrollTo(0, 0)"><span class="handheld-toolbar-icon"><i class="ci-menu"></i></span><span
-                    class="handheld-toolbar-label">Menu</span></a><a class="d-table-cell handheld-toolbar-item"
-                href="shop-cart.html"><span class="handheld-toolbar-icon"><i class="ci-cart"></i><span
-                        class="badge bg-primary rounded-pill ms-1">4</span></span><span
-                    class="handheld-toolbar-label">$265.00</span></a></div>
-    </div>
-
+ 
     <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span
             class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">
         </i></a>
