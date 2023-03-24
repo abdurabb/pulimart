@@ -57,7 +57,8 @@ const sendVerifyMail = async (name, email, user_id) => {
             from: config.emailUser,
             to: email,
             subject: "for Veryfication Mail",
-            html: '<p> Hai' + name + ', Please Click Here to <a href="http://localhost:3000/verify?id=' + user_id + '"> Verify </a> Your Mail </p>'
+            // html: '<p> Hai' + name + ', Please Click Here to <a href="http://localhost:3000/verify?id=' + user_id + '"> Verify </a> Your Mail </p>'
+            html: '<p> Hai' + name + ', Please Click Here to <a href="http://verify?id=' + user_id + '"> Verify </a> Your Mail </p>'
 
         }
         transporter.sendMail(mailOptions, function (error, info) {
@@ -278,7 +279,7 @@ const verifyOtp = async (req, res) => {
 // verify Mail Section
 const verifyMail = async (req, res) => {
     try {
-
+        console.log("verified");
         const updateInfo = await User.updateOne({ _id: req.query.id }, { $set: { is_verified: 1 } });
         console.log(updateInfo);
         res.render('email-verified');
