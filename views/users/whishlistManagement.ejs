@@ -74,7 +74,8 @@
             <h2 class="h6 text-light mb-0">Products</h2>
           </div>
           <!-- Item-->
-          <%if(wishListProducts.length>0){%>
+          <%if(typeof wishListProducts !== "undefined"){
+          if(wishListProducts.length>0){%>
                
             <table class="table  text-center">
                 <thead class="thead-dark ">
@@ -110,6 +111,11 @@
               </table>
                 <%} else {%>
                   <div class="text-center mt-5">
+                    <h1 class="text-danger"> Your WishList is Empty</h1>
+                    <a href="/shope"><button class="btn btn-outline-success">Please Add The Product</button></a>
+                  </div>
+                  <%} } else {%>
+                    <div class="text-center mt-5">
                     <h1 class="text-danger"> Your WishList is Empty</h1>
                     <a href="/shope"><button class="btn btn-outline-success">Please Add The Product</button></a>
                   </div>

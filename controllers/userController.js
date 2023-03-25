@@ -508,8 +508,10 @@ const cartPage = async (req, res) => {
         const cart = await Cart.findOne({ user: userId })
         // const cartData = await Cart.findOne({ user: userId }).populate('product.$.productId')
         // ------------------------------------
-        const cartProducts = cart.product;
+        if(cart){
+            const cartProducts = cart.product;
         const userCartProductsId = cartProducts.map(values => values.productId)
+
 
         const products = await Product.aggregate([
             {
@@ -531,6 +533,10 @@ const cartPage = async (req, res) => {
         // ----------------------------------
         const totalPrice = cart.totalPrice
         res.render('cartManagement', { products, cartProducts, cart })
+        }else{
+            res.render('cartManagement')
+        }
+        
     } catch (error) {
         console.log(error.message);
         console.log("Cart Management Section");
@@ -1158,7 +1164,7 @@ const wishlistPage = async (req, res) => {
         const userId = await req.session.user_id;
         const wishList = await WishList.findOne({ user: userId })
         //   -----------------------------------------------
-
+        if(wishList){
         const wishListProducts = wishList.product;
         const wishListProductsId = wishListProducts.map(values => values.productId)
 
@@ -1183,6 +1189,9 @@ const wishlistPage = async (req, res) => {
         // --------------------------------------------------
 
         res.render('whishlistManagement', { wishListProducts, wishList, products })
+    }else{
+        res.render('whishlistManagement')
+        }
     } catch (error) {
         console.log(error.messege);
         console.log("whish list Page");
