@@ -58,7 +58,7 @@ const sendVerifyMail = async (name, email, user_id) => {
             to: email,
             subject: "for Veryfication Mail",
             // html: '<p> Hai' + name + ', Please Click Here to <a href="http://localhost:3000/verify?id=' + user_id + '"> Verify </a> Your Mail </p>'
-            html: '<p> Hai' + name + ', Please Click Here to <a href="http://verify?id=' + user_id + '"> Verify </a> Your Mail </p>'
+            html: '<p> Hai' + name + ', Please Click Here to <a href="/verify?id=' + user_id + '"> Verify </a> Your Mail </p>'
 
         }
         transporter.sendMail(mailOptions, function (error, info) {
@@ -1121,8 +1121,8 @@ const shopePage = async (req, res) => {
                 totalPages,
                 currentPage: parseInt(page, 10),
                 product,
-                // cartCount,
-                // wishListCount
+                cartCount,
+                wishListCount
             })
         } else {
             res.render('shope', {
