@@ -256,8 +256,11 @@ const verifyOtp = async (req, res) => {
             const userData = await user.save();
             // -------------------------
 
-            sendVerifyMail(req.session.signupData.name, req.session.signupData.email, userData._id);
-            res.render('otp', { messege: "Successfully Registred, Please Verify Your Mail" })
+            // sendVerifyMail(req.session.signupData.name, req.session.signupData.email, userData._id);
+            // res.render('otp', { messege: "Successfully Registred, Please Verify Your Mail" })
+
+            
+            res.render('login',{ messege: "Successfully Registred, Please Login" })
 
             // --------------------------
             // ------------------------
@@ -304,13 +307,14 @@ const verifyLogin = async (req, res) => {
             if (passwordMatch) {
                 const block = userDetail.is_blocked;
                 if (block == 0) {
-                    if (userDetail.is_verified == 1) {
+                    // if (userDetail.is_verified == 1) {
                         req.session.user_id = userDetail._id;
                         const product = await Product.find()
                         res.redirect('/');
-                    } else {
-                        res.render('login', { messege: " Mail Not Varified .. Please Check Your Mail" })
-                    }
+                    // } 
+                    // else {
+                    //     res.render('login', { messege: " Mail Not Varified .. Please Check Your Mail" })
+                    // }
                 }
                 else {
                     res.render('login', { messege: "You Are Blocked" })
