@@ -352,15 +352,16 @@ const forgetVerify = async (req, res) => {
         const email = req.body.email
         const userData = await User.findOne({ email: email })
         if (userData) {
-            if (userData.is_verified === 0) {
-                res.render('forget', { messege: "Email Not Varified" })
-            }
-            else {
+            // if (userData.is_verified === 0) {
+            //     res.render('forget', { messege: "Email Not Varified" })
+            // }
+            // else {
+                
                 const randomStringg = randomString.generate();
                 const updatedData = await User.updateOne({ email: email }, { $set: { token: randomStringg } });
                 sendResetPasswordMail(userData.name, userData.email, randomStringg)
                 res.render('forget', { messege: "Please Check Your Mail for Reset Password" })
-            }
+            // }
 
         } else {
             res.render('forget', { messege: "Invalid Email Id" })
@@ -608,10 +609,17 @@ const changeQuantity = async (req, res) => {
 const checkOut = async (req, res) => {
     try {
         const user = req.session.user_id;
-        const cart = await Cart.findOne({ user: user }).populate('product')
+        const cart = await Cart.findOne({ user: user }).populate('product.productId')
         const userData = await User.findOne({ _id: user })
 
+        let product=[] 
+        for(let i=0;i<cart.product.length;i++){
+            product[i]=cart.product[i].stock;
+        }
+        console.log(product);
+
         res.render('checkOut', { cart, userData })
+
     } catch (error) {
         console.log(error.message);
         console.log("CheckOut Section");

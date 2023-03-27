@@ -425,8 +425,12 @@ const updateProductLoad = async (req, res) => {
             return files;
         })()
         // ---------------------------
-
-        const productData = await Product.findByIdAndUpdate({ _id: req.body.id }, { $set: { name: req.body.name, description: req.body.description, price: req.body.price, stock: req.body.stock, image: imageUpload } })
+        if(req.files.length > 0){
+            const productData = await Product.findByIdAndUpdate({ _id: req.body.id }, { $set: { name: req.body.name, description: req.body.description, price: req.body.price, stock: req.body.stock, image: imageUpload } })
+        }else{
+            const productData = await Product.findByIdAndUpdate({ _id: req.body.id }, { $set: { name: req.body.name, description: req.body.description, price: req.body.price, stock: req.body.stock,  } })
+        }
+        
         // ,image:req.file.filename
         res.redirect('/admin/product')
     } catch (error) {

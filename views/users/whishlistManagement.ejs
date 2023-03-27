@@ -54,10 +54,12 @@
     <!-- Page Title-->
     <div class="page-title-overlap pt-3" style="background-color: #20547d;">
       <div class="container d-lg-flex justify-content-between ">
-       <a href="/"> <div class="order-lg-2 mb-2 mb-lg-0 ">
-          <img src="landsheetImages/logo.png" alt="" width="90px" height="80px">
-          <h3 class=" " style="color: crimson;">Pulimart</h3>
-        </div></a>
+        <a href="/">
+          <div class="order-lg-2 mb-2 mb-lg-0 ">
+            <img src="landsheetImages/logo.png" alt="" width="90px" height="80px">
+            <h3 class=" " style="color: crimson;">Pulimart</h3>
+          </div>
+        </a>
         <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
           <h1 class="h3 text-light mb-0">Your Favourite </h1>
         </div>
@@ -74,65 +76,85 @@
             <h2 class="h6 text-light mb-0">Products</h2>
           </div>
           <!-- Item-->
-          <%if(typeof wishListProducts !== "undefined"){
-          if(wishListProducts.length>0){%>
-               
-            <table class="table  text-center">
-                <thead class="thead-dark ">
-                  <tr>
-                    <th scope="col">Sl-No</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Action</th>
-                    <th scope="col">Move to Cart</th>
+          <%if(typeof wishListProducts !=="undefined" ){ if(wishListProducts.length>0){%>
 
-                  </tr>
-                </thead>
-                <% for(let i=0;i<wishListProducts.length;i++){ %>
+            <table class="table  text-center mt-5">
+              <thead class="thead-dark ">
+                <tr>
+                  <th scope="col">Sl-No</th>
+                  <th scope="col">Product</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Action</th>
+                  <th scope="col">Move to Cart</th>
+
+                </tr>
+              </thead>
+              <% for(let i=0;i<wishListProducts.length;i++){ %>
                 <tbody>
                   <tr>
-                    <th scope="row" class="pt-5"><%=i+1%></th>
-                    <td class=""> <img width="80px" height="" src="/productimages/<%=products[i].image[0]%>" alt=""> </td>
-                    <td class="pt-5"><%=wishList.product[i].name%></td>
-                    <td class="pt-5"><%=wishList.product[i].price%></td>
-                    
+                    <th scope="row" class="pt-5">
+                      <%=i+1%>
+                    </th>
+                    <td class=""> <img width="80px" height="" src="/productimages/<%=products[i].image[0]%>" alt="">
+                    </td>
+                    <td class="pt-5">
+                      <%=wishList.product[i].name%>
+                    </td>
+                    <td class="pt-5">
+                      <%=wishList.product[i].price%>
+                    </td>
+
                     <td class="pt-5"><a href="/removeWishList?id=<%=products[i]._id%>">
-                        <button class="btn-outline-danger rounded-pill">Remove</button> </a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red"
+                          class="bi bi-trash" viewBox="0 0 16 16">
+                          <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                          <path fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                      </a>
+
                     </td>
                     <td class="pt-5">
                       <a href="/addToCart?id=<%=products[i]._id%>">
-                        <button class="btn-outline-success rounded-pill">Add to Cart</button> </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="green"
+                          class="bi bi-cart" viewBox="0 0 16 16">
+                          <path
+                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                        </svg>
+                      </a>
                   </tr>
 
                   <%}%>
                 </tbody>
-               
-              </table>
-                <%} else {%>
-                  <div class="text-center mt-5">
-                    <h1 class="text-danger"> Your WishList is Empty</h1>
-                    <a href="/shope"><button class="btn btn-outline-success">Please Add The Product</button></a>
-                  </div>
-                  <%} } else {%>
-                    <div class="text-center mt-5">
-                    <h1 class="text-danger"> Your WishList is Empty</h1>
-                    <a href="/shope"><button class="btn btn-outline-success">Please Add The Product</button></a>
-                  </div>
-                  <%}%>
-                   
-                    <!-- item -->
+
+            </table>
+            <%} else {%>
+              <div class="text-center mt-5">
+                <h1 class="text-danger"> Your WishList is Empty</h1>
+                <a href="/shope"><button class="btn btn-outline-success">Please Add The Product</button></a>
+              </div>
+              <%} } else {%>
+                <div class="text-center mt-5">
+                  <h1 class="text-danger"> Your WishList is Empty</h1>
+                  <a href="/shope"><button class="btn btn-outline-success">Please Add The Product</button></a>
+                </div>
+                <%}%>
+
+                  <!-- item -->
         </section>
         <!-- Sidebar-->
-        
+
       </div>
     </div>
   </main>
   <!-- Footer-->
 
-  
 
- 
+
+
   <!-- Vendor scrits: js libraries and plugins-->
   <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/simplebar/dist/simplebar.min.js"></script>
