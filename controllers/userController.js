@@ -299,17 +299,18 @@ const verifyLogin = async (req, res) => {
     try {
         const email = req.body.email;
         const password = req.body.password;
-
+       
         const userDetail = await User.findOne({ email: email })
-        const value = userDetail.isAdmin;
-        if (userDetail && value == 0) {
-            const passwordMatch = await bcrypt.compare(password, userDetail.password)
+        
+        
+        if (userDetail ) {
+            if (userDetail.isAdmin == 0){
+                const passwordMatch = await bcrypt.compare(password, userDetail.password)
             if (passwordMatch) {
                 const block = userDetail.is_blocked;
                 if (block == 0) {
                     // if (userDetail.is_verified == 1) {
                         req.session.user_id = userDetail._id;
-                        const product = await Product.find()
                         res.redirect('/');
                     // } 
                     // else {
@@ -322,6 +323,10 @@ const verifyLogin = async (req, res) => {
             } else {
                 res.render('login', { messege: "Incorect user or password" })
             }
+            }else{
+                res.render('login', { messege: "Incorect user or password" })
+            }
+            
         } else {
             res.render('login', { messege: "Incorect user or password" })
         }
@@ -1042,7 +1047,7 @@ const cancelOrder = (req, res) => {
             res.render('cacheHandle');
             reject(error);
         });
-    });
+    });    
 };
 
 // /returnOrder from user
