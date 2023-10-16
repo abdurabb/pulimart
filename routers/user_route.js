@@ -4,12 +4,12 @@ const session=require("express-session");
 const userController=require('../controllers/userController')
 const coupounController = require('../controllers/coupounController');
 const bodyParser= require('body-parser')
-const config=require('../config/config')
+// const config=require('../config/config')
 const userAuth=require('../middleware/userAuth')
 
 
 
-user_route.use(session({secret:config.sessionSecret,
+user_route.use(session({secret:process.env.SESSIONSECRET,
 saveUninitialized:true,
 resave:false}))
 

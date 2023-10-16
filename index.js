@@ -1,13 +1,20 @@
 require('dotenv').config()
 
 const port = process.env.PORT
-const dbConfig=require('./config/dbConfig')
+// const dbConfig=require('./config/dbConfig')
 const express = require('express');
 const path = require('path');
 const adminRoute = require('./routers/admin_route')
 const userRoute = require("./routers/user_route");
 const bodyParser = require('body-parser');
 
+
+//       db config
+const mongoose = require("mongoose")
+mongoose.set('strictQuery', false);
+mongoose.connect(process.env.MONGOCONNECT)
+
+// -------
 const app = express();
 
 app.use(bodyParser.json())

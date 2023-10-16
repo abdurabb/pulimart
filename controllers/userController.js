@@ -6,7 +6,7 @@ const Order = require('../models/order')
 const WishList = require('../models/wishlist')
 const bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer');
-const config = require('../config/config')
+// const config = require('../config/config')
 const randomString = require('randomstring');
 const session = require('express-session');
 // const { ObjectId } = require('mongodb');
@@ -40,43 +40,51 @@ const securePassword = async (password) => {
 }
 
 // for Send Mail  verification
-const sendVerifyMail = async (name, email, user_id) => {
-    try {
-        const transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 587,
-            secure: false,
-            tls: true,
-            auth: {
-                user: config.emailUser,
-                pass: config.emailPassword
-            }
-        });
 
-        const mailOptions = {
-            from: config.emailUser,
-            to: email,
-            subject: "for Veryfication Mail",
-            // html: '<p> Hai' + name + ', Please Click Here to <a href="http://localhost:3000/verify?id=' + user_id + '"> Verify </a> Your Mail </p>'
-            html: '<p> Hai' + name + ', Please Click Here to <a href="/verify?id=' + user_id + '"> Verify </a> Your Mail </p>'
 
-        }
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-                console.log("Mail Transporter  in send Mail Section");
-            } else {
-                console.log("Email has been send:-", info.response);
-            }
-        })
-    } catch (error) {
-        console.log(error.messages);
-        console.log("Send Mail Section");
-        res.render('cacheHandle')
-    }
-}
+
+// const sendVerifyMail = async (name, email, user_id) => {
+//     try {
+//         const transporter = nodemailer.createTransport({
+//             host: "smtp.gmail.com",
+//             port: 587,
+//             secure: false,
+//             tls: true,
+//             auth: {
+//                 // user: config.emailUser,
+//                 // pass: config.emailPassword
+//             }
+//         });
+
+//         const mailOptions = {
+//             from: config.emailUser,
+//             to: email,
+//             subject: "for Veryfication Mail",
+//             // html: '<p> Hai' + name + ', Please Click Here to <a href="http://localhost:3000/verify?id=' + user_id + '"> Verify </a> Your Mail </p>'
+//             html: '<p> Hai' + name + ', Please Click Here to <a href="/verify?id=' + user_id + '"> Verify </a> Your Mail </p>'
+
+//         }
+//         transporter.sendMail(mailOptions, function (error, info) {
+//             if (error) {
+//                 console.log(error);
+//                 console.log("Mail Transporter  in send Mail Section");
+//             } else {
+//                 console.log("Email has been send:-", info.response);
+//             }
+//         })
+//     } catch (error) {
+//         console.log(error.messages);
+//         console.log("Send Mail Section");
+//         res.render('cacheHandle')
+//     }
+// }
+
+
 
 //for reset password Mail Sending
+
+
+
 const sendResetPasswordMail = async (name, email, token) => {
     try {
         const transporter = nodemailer.createTransport({
@@ -85,13 +93,13 @@ const sendResetPasswordMail = async (name, email, token) => {
             secure: false,
             tls: true,
             auth: {
-                user: config.emailUser,
-                pass: config.emailPassword
+                user: process.env.EMAILUSER ,
+                pass: process.env.EMAILPASSWORD
             }
         });
 
         const mailOptions = {
-            from: config.emailUser,
+            from:process.env.EMAILUSER ,
             to: email,
             subject: "for Reset Password",
             html: '<p> Hai  ' + name + ', Please Click Here to <a href="http://localhost:3000/forget-password?token=' + token + '"> Reset </a> Your Password </p>'

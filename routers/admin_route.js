@@ -1,20 +1,39 @@
 const express = require('express');
 const session = require("express-session");
-const config = require('../config/config')
+// const config = require('../config/config')
 const adminAuth = require('../middleware/adminAuth')
 const bodyParser = require('body-parser')
 const path = require('path');
 const adminController = require('../controllers/adminController');
 const coupounController = require('../controllers/coupounController');
-const upload = require('../config/multerConfig')
+// const upload = require('../config/multerConfig')
+
+// -------------------from config 
+const multer=require("multer")
+// const path = require('path');
+
+const storage = multer.diskStorage({
+    destination:function(req,file,cb){
+       cb(null,path.join(__dirname, '../public/productimages'))
+    },
+    filename:function(req,file,cb){
+      const name=Date.now()+"-"+file.originalname;
+      cb(null,name);
+    }
+});
+const upload = multer({storage:storage})
+
+// --------
 
 const admin_route = express();
 
 admin_route.use(session({
-  secret: config.sessionSecret
+  secret: process.env.SESSIONSECRET
   , saveUninitialized: true,
   resave: false
 }))
+
+
 
 admin_route.set('view engine', 'ejs');
 admin_route.set('views', './views/admin');
