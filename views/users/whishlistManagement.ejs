@@ -76,7 +76,8 @@
             <h2 class="h6 text-light mb-0">Products</h2>
           </div>
           <!-- Item-->
-          <%if(typeof wishListProducts !=="undefined" ){ if(wishListProducts.length>0){%>
+          <%if(typeof wishListProducts !=="undefined" ){ 
+            if(wishListProducts.length>0){%>
 
             <table class="table  text-center mt-5">
               <thead class="thead-dark ">
@@ -87,7 +88,7 @@
                   <th scope="col">Price</th>
                   <th scope="col">Action</th>
                   <th scope="col">Move to Cart</th>
-
+                  
                 </tr>
               </thead>
               <% for(let i=0;i<wishListProducts.length;i++){ %>

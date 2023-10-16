@@ -1,11 +1,12 @@
 
-const { ObjectId } = require('mongodb');
+// const { ObjectId } = require('mongodb');
 const mongoose=require('mongoose');
 
 const orderData= new mongoose.Schema({
     
     user:{
-        type:ObjectId,
+        // type:ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
     paymentMethod:{
@@ -19,7 +20,8 @@ const orderData= new mongoose.Schema({
     product:[
         {
             productId:{
-                type:ObjectId,
+                // type:ObjectId,
+                type: mongoose.Schema.Types.ObjectId,
                 ref:'Product'},
                 quantity:Number,
                 sellingPrice:Number

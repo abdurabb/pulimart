@@ -1,4 +1,4 @@
-const { ObjectId } = require('mongodb');
+// const { ObjectId } = require('mongodb');
 const mongoose=require('mongoose');
 
 const cartData= new mongoose.Schema({
@@ -8,7 +8,7 @@ const cartData= new mongoose.Schema({
         // ref:"Product",
         // required:true,
 
-        productId:ObjectId,
+        productId:mongoose.Schema.Types.ObjectId,
         quantity:Number,
         name:String,
         price:Number 

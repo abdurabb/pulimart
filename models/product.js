@@ -1,4 +1,4 @@
-const { ObjectId } = require('mongodb');
+// const { ObjectId } = require('mongodb');
 const mongoose=require('mongoose');
 
 const productData= new mongoose.Schema({
@@ -16,7 +16,8 @@ const productData= new mongoose.Schema({
         required:true
     },
     category:{
-        type:ObjectId,
+        // type:ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
        ref:'Catogery'
     },
     image:{
