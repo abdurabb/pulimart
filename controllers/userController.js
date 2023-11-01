@@ -128,6 +128,7 @@ const securePassword = async (password) => {
 //for reset password Mail Sending
 const sendResetPasswordMail = async (name, email, token) => {
     try {
+        const clientUrl = process.env.CLIENT_URL;
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 587,
@@ -143,7 +144,8 @@ const sendResetPasswordMail = async (name, email, token) => {
             from: process.env.EMAILUSER,
             to: email,
             subject: "for Reset Password",
-            html: '<p> Hai  ' + name + ', Please Click Here to <a href="http://localhost:3000/forget-password?token=' + token + '"> Reset </a> Your Password </p>'
+            // html: '<p> Hai  ' + name + ', Please Click Here to <a href="http://localhost:3000/forget-password?token=' + token + '"> Reset </a> Your Password </p>'
+            html: `<p> Hai ${name}, Please Click Here to <a href="${clientUrl}/forget-password?token=${token}"> Reset </a> Your Password </p>`
 
         }
         transporter.sendMail(mailOptions, function (error, info) {
@@ -471,6 +473,7 @@ const forgetPasswordLoad = async (req, res) => {
         res.render('cacheHandle')
     }
 }
+
 
 //Reset Password Section
 const resetPassword = async (req, res) => {
