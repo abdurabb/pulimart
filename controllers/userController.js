@@ -13,11 +13,13 @@ const session = require('express-session');
 const { response } = require('../routers/user_route');
 const { findByIdAndUpdate, findById } = require('../models/userModel');
 const Razorpay = require('razorpay')
+const nodeMailer = require('nodemailer')
 // ------------------ReazorPay instance Creation--------------
 var instance = new Razorpay({
     key_id: 'rzp_test_xk0UsGPRImH9dr',
     key_secret: 'WqViuHHzlHMKTSXaNtaZGQs1',
 });
+
 
 // ---------------------------------
 const { TWILIO_SERVICE_SID, TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN } = process.env;
@@ -25,6 +27,51 @@ const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, {
     lazyLoading: true
 });
 // -------------------------------------------
+
+
+// OTP SETTING With Node Mailer -------------------------------------
+const otpGenerator = () => {
+    const otp = Math.floor(Math.random() * 1000000);
+    return otp;
+};
+
+const EmailOtp = {};
+
+const noedeMailerconnect = (email) => {
+    const otp = otpGenerator();
+    console.log(otp);
+    EmailOtp[email] = otp;
+
+    const transporter = nodeMailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+
+        service: "gmail",
+        auth: {
+            user: process.env.EMAILUSER,
+            pass: process.env.EMAILPASSWORD,
+        },
+        secure: false,
+
+        tls: {
+            // do not fail on invalid certs
+            rejectUnauthorized: false,
+        },
+    });
+    var mailOptions = {
+        from: process.env.EMAILUSER,
+        to: email,
+        subject: "Otp for registration is: ",
+        html: `<h3>OTP for account verification  </h3>" '<hr />'
+        <h1 style='font-weight:bold;'> OTP from Pulimart is ${otp}</h1>`, // html body
+    };
+
+    const sendMail = { transporter, mailOptions };
+
+    return sendMail;
+};
+
+// OTP Setting Ending ------------------
 
 //bcrypt password secure 
 const securePassword = async (password) => {
@@ -40,9 +87,6 @@ const securePassword = async (password) => {
 }
 
 // for Send Mail  verification
-
-
-
 // const sendVerifyMail = async (name, email, user_id) => {
 //     try {
 //         const transporter = nodemailer.createTransport({
@@ -82,9 +126,6 @@ const securePassword = async (password) => {
 
 
 //for reset password Mail Sending
-
-
-
 const sendResetPasswordMail = async (name, email, token) => {
     try {
         const transporter = nodemailer.createTransport({
@@ -93,13 +134,13 @@ const sendResetPasswordMail = async (name, email, token) => {
             secure: false,
             tls: true,
             auth: {
-                user: process.env.EMAILUSER ,
+                user: process.env.EMAILUSER,
                 pass: process.env.EMAILPASSWORD
             }
         });
 
         const mailOptions = {
-            from:process.env.EMAILUSER ,
+            from: process.env.EMAILUSER,
             to: email,
             subject: "for Reset Password",
             html: '<p> Hai  ' + name + ', Please Click Here to <a href="http://localhost:3000/forget-password?token=' + token + '"> Reset </a> Your Password </p>'
@@ -201,20 +242,34 @@ const insertUser = async (req, res) => {
         }
         else {
             // -----------------------
+
             req.session.signupData = req.body;
             const phone = req.body.phone;
-            const otpResponse = await client.verify.
-                v2.services(TWILIO_SERVICE_SID)
-                .verifications.create({
-                    to: phone,
-                    channel: "sms",
-                })
 
-            res.render('otp', { message: req.body.phone })
+            // const otpResponse = await client.verify.
+            //     v2.services(TWILIO_SERVICE_SID)
+
+            //     .verifications.create({
+            //         to: phone,
+            //         channel: "sms",
+            //     })
+            const sendMail = noedeMailerconnect(req.body.email);
+            // ======
+            sendMail.transporter.sendMail(sendMail.mailOptions, (error, info) => {
+                if (error) {
+                    console.log(error);
+                    res.render('cacheHandle')
+                } else {
+                    res.render('otp', { message: req.body.email })
+                }
+            });     
+            // ======
+            // res.render('otp', { message: req.body.phone })
         }
 
     } catch (error) {
-        console.log(error.messege);
+        console.log('error here');
+        console.log(error);
         console.log("inset user section ");
         res.render('cacheHandle')
     }
@@ -222,15 +277,26 @@ const insertUser = async (req, res) => {
 // Resend Otp
 const resendOtp = async (req, res) => {
     try {
-        const phone = req.session.signupData.phone;
-        const otpResponse = await client.verify.
-            v2.services(TWILIO_SERVICE_SID)
-            .verifications.create({
-                to: phone,
-                channel: "sms",
-            })
+        const email = req.session.signupData.email;
+        // const otpResponse = await client.verify.
+        //     v2.services(TWILIO_SERVICE_SID)
+        //     .verifications.create({
+        //         to: phone,
+        //         channel: "sms",
+        //     })
 
-        res.render('otp', { message: req.body.phone })
+        const sendMail = noedeMailerconnect(email);
+            // ======
+            sendMail.transporter.sendMail(sendMail.mailOptions, (error, info) => {
+                if (error) {
+                    console.log(error);
+                    res.render('cacheHandle')
+                } else {
+                    res.render('otp', { message: req.body.email })
+                }
+            });
+
+        res.render('otp', { message: req.body.email })
     } catch (error) {
         console.log(error.message);
         console.log("resend Otp section");
@@ -241,17 +307,18 @@ const resendOtp = async (req, res) => {
 //verify Otp 
 const verifyOtp = async (req, res) => {
     const otp = req.body.otp;
-    const phone = req.session.signupData.phone;
-    console.log(otp + " " + phone);
+    console.log(otp +'this is verify otp');
+    // const phone = req.session.signupData.phone;
+    // console.log(otp + " " + phone);
     try {
-        const verifiedResponse = await client.verify.
-            v2.services(TWILIO_SERVICE_SID)
-            .verificationChecks.create({
-                to: phone,
-                code: otp,
-            })
-
-        if (verifiedResponse.status == 'approved') {
+        // const verifiedResponse = await client.verify.
+        //     v2.services(TWILIO_SERVICE_SID)
+        //     .verificationChecks.create({
+        //         to: phone,
+        //         code: otp,
+        //     })
+        console.log(EmailOtp);
+        if (otp == EmailOtp[req.session.signupData.email]) {
             // -----------------------
             const spassword = await securePassword(req.session.signupData.password);
             const user = new User({
@@ -262,13 +329,13 @@ const verifyOtp = async (req, res) => {
                 isAdmin: 0,
             })
             const userData = await user.save();
+            delete EmailOtp[req.session.signupData.email]
             // -------------------------
 
             // sendVerifyMail(req.session.signupData.name, req.session.signupData.email, userData._id);
             // res.render('otp', { messege: "Successfully Registred, Please Verify Your Mail" })
+            res.render('login', { messege: "Successfully Registred, Please Login" })
 
-            
-            res.render('login',{ messege: "Successfully Registred, Please Login" })
 
             // --------------------------
             // ------------------------
@@ -276,12 +343,11 @@ const verifyOtp = async (req, res) => {
             res.render('otp', { messege: "Incorect Otp" })
         }
     } catch (error) {
-        console.log(error.messages);
+        console.log(error);
         console.log("verify OTP Section");
         res.render('cacheHandle')
     }
 }
-
 
 
 
@@ -307,34 +373,34 @@ const verifyLogin = async (req, res) => {
     try {
         const email = req.body.email;
         const password = req.body.password;
-       
+
         const userDetail = await User.findOne({ email: email })
-        
-        
-        if (userDetail ) {
-            if (userDetail.isAdmin == 0){
+
+
+        if (userDetail) {
+            if (userDetail.isAdmin == 0) {
                 const passwordMatch = await bcrypt.compare(password, userDetail.password)
-            if (passwordMatch) {
-                const block = userDetail.is_blocked;
-                if (block == 0) {
-                    // if (userDetail.is_verified == 1) {
+                if (passwordMatch) {
+                    const block = userDetail.is_blocked;
+                    if (block == 0) {
+                        // if (userDetail.is_verified == 1) {
                         req.session.user_id = userDetail._id;
                         res.redirect('/');
-                    // } 
-                    // else {
-                    //     res.render('login', { messege: " Mail Not Varified .. Please Check Your Mail" })
-                    // }
-                }
-                else {
-                    res.render('login', { messege: "You Are Blocked" })
+                        // } 
+                        // else {
+                        //     res.render('login', { messege: " Mail Not Varified .. Please Check Your Mail" })
+                        // }
+                    }
+                    else {
+                        res.render('login', { messege: "You Are Blocked" })
+                    }
+                } else {
+                    res.render('login', { messege: "Incorect user or password" })
                 }
             } else {
                 res.render('login', { messege: "Incorect user or password" })
             }
-            }else{
-                res.render('login', { messege: "Incorect user or password" })
-            }
-            
+
         } else {
             res.render('login', { messege: "Incorect user or password" })
         }
@@ -369,11 +435,11 @@ const forgetVerify = async (req, res) => {
             //     res.render('forget', { messege: "Email Not Varified" })
             // }
             // else {
-                
-                const randomStringg = randomString.generate();
-                const updatedData = await User.updateOne({ email: email }, { $set: { token: randomStringg } });
-                sendResetPasswordMail(userData.name, userData.email, randomStringg)
-                res.render('forget', { messege: "Please Check Your Mail for Reset Password" })
+
+            const randomStringg = randomString.generate();
+            const updatedData = await User.updateOne({ email: email }, { $set: { token: randomStringg } });
+            sendResetPasswordMail(userData.name, userData.email, randomStringg)
+            res.render('forget', { messege: "Please Check Your Mail for Reset Password" })
             // }
 
         } else {
@@ -522,35 +588,35 @@ const cartPage = async (req, res) => {
         const cart = await Cart.findOne({ user: userId })
         // const cartData = await Cart.findOne({ user: userId }).populate('product.$.productId')
         // ------------------------------------
-        if(cart){
+        if (cart) {
             const cartProducts = cart.product;
-        const userCartProductsId = cartProducts.map(values => values.productId)
+            const userCartProductsId = cartProducts.map(values => values.productId)
 
 
-        const products = await Product.aggregate([
-            {
-                $match: {
-                    _id: { $in: userCartProductsId }
-                }
-            }, {
-                $project: {
-                    _id: 1,
-                    name: 1,
-                    image: 1,
-                    price: 1,
+            const products = await Product.aggregate([
+                {
+                    $match: {
+                        _id: { $in: userCartProductsId }
+                    }
+                }, {
+                    $project: {
+                        _id: 1,
+                        name: 1,
+                        image: 1,
+                        price: 1,
 
-                    cartOrder: { $indexOfArray: [userCartProductsId, "$_id"] }
-                }
-            },
-            { $sort: { cartOrder: 1 } }
-        ])
-        // ----------------------------------
-        const totalPrice = cart.totalPrice
-        res.render('cartManagement', { products, cartProducts, cart })
-        }else{
+                        cartOrder: { $indexOfArray: [userCartProductsId, "$_id"] }
+                    }
+                },
+                { $sort: { cartOrder: 1 } }
+            ])
+            // ----------------------------------
+            const totalPrice = cart.totalPrice
+            res.render('cartManagement', { products, cartProducts, cart })
+        } else {
             res.render('cartManagement')
         }
-        
+
     } catch (error) {
         console.log(error.message);
         console.log("Cart Management Section");
@@ -625,9 +691,9 @@ const checkOut = async (req, res) => {
         const cart = await Cart.findOne({ user: user }).populate('product.productId')
         const userData = await User.findOne({ _id: user })
 
-        let product=[] 
-        for(let i=0;i<cart.product.length;i++){
-            product[i]=cart.product[i].stock;
+        let product = []
+        for (let i = 0; i < cart.product.length; i++) {
+            product[i] = cart.product[i].stock;
         }
         console.log(product);
 
@@ -1055,7 +1121,7 @@ const cancelOrder = (req, res) => {
             res.render('cacheHandle');
             reject(error);
         });
-    });    
+    });
 };
 
 // /returnOrder from user
@@ -1185,33 +1251,33 @@ const wishlistPage = async (req, res) => {
         const userId = await req.session.user_id;
         const wishList = await WishList.findOne({ user: userId })
         //   -----------------------------------------------
-        if(wishList){
-        const wishListProducts = wishList.product;
-        const wishListProductsId = wishListProducts.map(values => values.productId)
+        if (wishList) {
+            const wishListProducts = wishList.product;
+            const wishListProductsId = wishListProducts.map(values => values.productId)
 
 
-        const products = await Product.aggregate([
-            {
-                $match: {
-                    _id: { $in: wishListProductsId }
-                }
-            }, {
-                $project: {
-                    name: 1,
-                    image: 1,
-                    price: 1,
+            const products = await Product.aggregate([
+                {
+                    $match: {
+                        _id: { $in: wishListProductsId }
+                    }
+                }, {
+                    $project: {
+                        name: 1,
+                        image: 1,
+                        price: 1,
 
-                    wishlistProductsimages: { $indexOfArray: [wishListProductsId, "$_id"] }
-                }
-            },
-            { $sort: { wishlistProductsimages: 1 } }
-        ])
+                        wishlistProductsimages: { $indexOfArray: [wishListProductsId, "$_id"] }
+                    }
+                },
+                { $sort: { wishlistProductsimages: 1 } }
+            ])
 
-        // --------------------------------------------------
+            // --------------------------------------------------
 
-        res.render('whishlistManagement', { wishListProducts, wishList, products })
-    }else{
-        res.render('whishlistManagement')
+            res.render('whishlistManagement', { wishListProducts, wishList, products })
+        } else {
+            res.render('whishlistManagement')
         }
     } catch (error) {
         console.log(error.messege);

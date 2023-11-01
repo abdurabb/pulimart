@@ -17,7 +17,7 @@
 
 }
 %>
-      <h5 class="m-0">OTP verification</h5><span class="mobile-text">Enter the code we just send on your mobile phone </span>
+      <h5 class="m-0">OTP verification</h5><span class="mobile-text">Enter the code we just send on your Email</span>
       <div class="d-flex flex-row mt-5"><input type="text" name="otp"  class="form-control" autofocus=""></div>
       <h6 id="countdown-timer"></h6>
       <a href="/resend" id="resend" ></a>
@@ -28,7 +28,7 @@
 
 <script>
   // Set the number of seconds to count down from
-var seconds = 30;
+var seconds = 60;
 
 // Get the countdown timer element from the HTML document
 var countdownTimer = document.getElementById("countdown-timer");
@@ -45,6 +45,7 @@ var countdownInterval = setInterval(function() {
   if (seconds === 0) {
     clearInterval(countdownInterval);
     document.getElementById('resend').innerHTML = "Resend Otp";
+    
   }
 }, 1000);
 
